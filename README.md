@@ -1,5 +1,17 @@
 # argo sample structure layout
 
+## deploying this thing
+
+set up a k3s or minikube local something or other
+kubectl apply the argo install.yaml - https://argo-cd.readthedocs.io/en/latest/operator-manual/installation/
+optional: install sealed secrets (lightweight for my personal usage, no cloud deps) - https://github.com/bitnami-labs/sealed-secrets
+put in a secret or sealed secret for the argo creds - https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repository-credentials
+kubectl apply the root app
+argo is now managing argo
+kargo - since it's a local cluster we can use admin, no need to setup oidc
+
+## notes
+
 the funny thing here is i've just basically gotten a self-hosted single tenant akuity platform thing going
 
 root app yaml - sources are itself and the appsets folder - rewrite here

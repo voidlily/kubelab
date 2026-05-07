@@ -1,0 +1,20 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  template:
+    metadata:
+      name: "argocd"
+    spec:
+      project: my-project
+      sources:
+        - repoURL: https://github.com/voidlily/kubelab
+          targetRevision: HEAD
+          path: argocd/apps/argocd/base/
+      destination:
+        name: in-cluster

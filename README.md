@@ -1,4 +1,6 @@
-# argo sample structure layout
+# kubelab
+
+kubelab is a minikube homelab setup for my preferred gitops backed k8s cluster, using argocd
 
 ## deploying this thing
 

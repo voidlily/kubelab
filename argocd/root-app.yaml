@@ -23,6 +23,7 @@ spec:
       path: argocd/appsets/
   destination:
     name: in-cluster
+    namespace: argocd
   syncPolicy:
     automated:
       enabled: true

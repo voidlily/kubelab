@@ -2,28 +2,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: argocd
+  name: kube-state-metrics
   namespace: argocd
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-    - list:
-        elements:
-          - name: in-cluster
+    - cluster: {}
   template:
     metadata:
-      name: "argocd"
+      name: "kube-state-metrics-{{ .name }}"
     spec:
       # TODO make a real project
       project: default
       sources:
+        - repoURL: oci://ghcr.io/prometheus-community/charts/kube-state-metrics
+          targetRevision: 7.3.0
+          path: .
+          helm:
+            valueFiles:
+              - $values/values.yaml
+            ignoreMissingValueFiles: true
         - repoURL: https://github.com/voidlily/kubelab
           targetRevision: HEAD
-          path: argocd/apps/argocd/base/
+          path: argocd/apps/kube-state-metrics/
+          ref: values
       destination:
-        name: in-cluster
-        namespace: argocd
+        name: "{{ .name }}"
+        namespace: kube-state-metrics
       syncPolicy:
         automated:
           enabled: true

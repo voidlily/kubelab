@@ -14,8 +14,8 @@ spec:
   sources:
     - repoURL: https://github.com/voidlily/kubelab
       targetRevision: HEAD
-      # reference itself
-      path: argocd/root-app.yaml
+      # reference root-app
+      path: argocd/
     - repoURL: https://github.com/voidlily/kubelab
       targetRevision: HEAD
       # reference all appsets

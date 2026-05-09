@@ -22,3 +22,8 @@ spec:
       path: argocd/appsets/
   destination:
     name: in-cluster
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+      selfHeal: true

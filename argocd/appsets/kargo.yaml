@@ -1,0 +1,41 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: kargo
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: "kargo-{{ .name }}"
+    spec:
+      # TODO make a real project
+      project: default
+      sources:
+        - repoURL: oci://ghcr.io/akuity/kargo-charts/kargo
+          targetRevision: v1.10.3
+          path: .
+          helm:
+            releaseName: kargo
+            valueFiles:
+              - $values/argocd/apps/kargo/values.yaml
+            ignoreMissingValueFiles: true
+        - repoURL: https://github.com/voidlily/kubelab
+          targetRevision: HEAD
+          ref: values
+      destination:
+        name: "{{ .name }}"
+        namespace: kargo
+      syncPolicy:
+        automated:
+          enabled: true
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - ApplyOutOfSyncOnly=true
+          - ServerSideApply=true
+          - CreateNamespace=true

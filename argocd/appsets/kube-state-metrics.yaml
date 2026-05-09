@@ -21,11 +21,10 @@ spec:
           path: .
           helm:
             valueFiles:
-              - $values/values.yaml
+              - $values/argocd/apps/kube-state-metrics/values.yaml
             ignoreMissingValueFiles: true
         - repoURL: https://github.com/voidlily/kubelab
           targetRevision: HEAD
-          path: argocd/apps/kube-state-metrics/
           ref: values
       destination:
         name: "{{ .name }}"

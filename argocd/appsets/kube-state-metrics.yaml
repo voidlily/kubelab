@@ -16,9 +16,9 @@ spec:
       # TODO make a real project
       project: default
       sources:
-        - repoURL: https://kubernetes-sigs.github.io/kube-state-metrics/
-          chart: kube-state-metrics
-          targetRevision: 3.13.0
+        - repoURL: oci://ghcr.io/prometheus-community/charts/kube-state-metrics
+          targetRevision: 7.3.0
+          path: .
           helm:
             releaseName: kube-state-metrics
             valueFiles:

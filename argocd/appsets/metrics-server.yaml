@@ -16,9 +16,9 @@ spec:
       # TODO make a real project
       project: default
       sources:
-        - repoURL: oci://ghcr.io/prometheus-community/charts/metrics-server
-          targetRevision: 7.3.0
-          path: .
+        - repoURL: https://kubernetes-sigs.github.io/metrics-server/
+          chart: metrics-server
+          targetRevision: 3.13.0
           helm:
             releaseName: metrics-server
             valueFiles:

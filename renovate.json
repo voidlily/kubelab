@@ -5,5 +5,25 @@
   ],
   "argocd": {
     "managerFilePatterns": ["/argocd/appsets/.+\\.yaml$/"]
-  }
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update GitHub release references in kustomization.yaml",
+      "fileMatch": ["kustomization.yaml"],
+      "matchStrings": [
+        "https:\\/\\/github\\.com\\/(?<depName>.*\\/.*?)\\/releases\\/download\\/(?<currentValue>.*?)\\/"
+      ],
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "customType": "regex",
+      "description": "Update GitHub tag references in kustomization.yaml",
+      "fileMatch": ["kustomization.yaml"],
+      "matchStrings": [
+        "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[^\\/]*\\/[^\\/]*)\\/(?<currentValue>.*?)\\/"
+      ],
+      "datasourceTemplate": "github-tags"
+    }
+  ]
 }

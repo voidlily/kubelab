@@ -1,0 +1,7 @@
+---
+# this is highly insecure, don't expose this publicly
+# in an actual public setting this would be disabled and backed by oidc instead
+api:
+  adminAccount:
+    passwordHash: $2y$10$UgRwUArdZ6NzIznKTd29VOCM3vPODZ3gT150fCBpBL.zNT34yqkMC
+    tokenSigningKey: hjtizjVtDxMTe9ZFtAVQcWR39CoQJrjh

@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: kube-state-metrics
+  name: metrics-server
   namespace: argocd
 spec:
   goTemplate: true
@@ -11,25 +11,25 @@ spec:
     - clusters: {}
   template:
     metadata:
-      name: "kube-state-metrics-{{ .name }}"
+      name: "metrics-server-{{ .name }}"
     spec:
       # TODO make a real project
       project: default
       sources:
-        - repoURL: oci://ghcr.io/prometheus-community/charts/kube-state-metrics
+        - repoURL: oci://ghcr.io/prometheus-community/charts/metrics-server
           targetRevision: 7.3.0
           path: .
           helm:
             releaseName: metrics-server
             valueFiles:
-              - $values/argocd/apps/kube-state-metrics/values.yaml
+              - $values/argocd/apps/metrics-server/values.yaml
             ignoreMissingValueFiles: true
         - repoURL: https://github.com/voidlily/kubelab
           targetRevision: HEAD
           ref: values
       destination:
         name: "{{ .name }}"
-        namespace: kube-state-metrics
+        namespace: metrics-server
       syncPolicy:
         automated:
           enabled: true

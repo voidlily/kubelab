@@ -20,6 +20,7 @@ spec:
           targetRevision: 7.3.0
           path: .
           helm:
+            releaseName: metrics-server
             valueFiles:
               - $values/argocd/apps/kube-state-metrics/values.yaml
             ignoreMissingValueFiles: true

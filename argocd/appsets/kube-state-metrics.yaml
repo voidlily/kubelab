@@ -20,6 +20,7 @@ spec:
           chart: metrics-server
           targetRevision: 3.13.0
           helm:
+            releaseName: kube-state-metrics
             valueFiles:
               - $values/argocd/apps/metrics-server/values.yaml
             ignoreMissingValueFiles: true

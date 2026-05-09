@@ -4,12 +4,16 @@ kubelab is a minikube homelab setup for my preferred gitops backed k8s cluster, 
 
 ## deploying this thing
 
-set up a k3s or minikube local something or other
-kubectl apply the argo install.yaml - https://argo-cd.readthedocs.io/en/latest/operator-manual/installation/
+``` sh
+minikube start
+kubectl apply --server-side -k argocd/apps/argocd/base/
+kubectl apply --server-side argocd/root-app.yaml
+```
+
+argocd is now managing itself, get the admin password out of the initial admin secret and portforward to access argo ui
+
 optional: install sealed secrets (lightweight for my personal usage, no cloud deps) - https://github.com/bitnami-labs/sealed-secrets
 put in a secret or sealed secret for the argo creds - https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repository-credentials
-kubectl apply the root app
-argo is now managing argo
 kargo - since it's a local cluster we can use admin, no need to setup oidc
 
 ## notes

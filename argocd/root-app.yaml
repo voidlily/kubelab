@@ -9,6 +9,7 @@ metadata:
   labels:
     name: root-app
 spec:
+  # TODO make a real project
   project: default
 
   sources:

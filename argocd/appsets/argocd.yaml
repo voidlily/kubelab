@@ -15,7 +15,8 @@ spec:
     metadata:
       name: "argocd"
     spec:
-      project: my-project
+      # TODO make a real project
+      project: default
       sources:
         - repoURL: https://github.com/voidlily/kubelab
           targetRevision: HEAD

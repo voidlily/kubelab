@@ -7,6 +7,7 @@ metadata:
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
+  generators: []
   template:
     metadata:
       name: "argocd"

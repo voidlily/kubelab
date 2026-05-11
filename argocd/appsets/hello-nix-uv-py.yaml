@@ -1,0 +1,37 @@
+# In a real setup, this would be a "hosted-apps.yaml", with a list of repos
+# passed in somehow, likely your org's microservice repos or what have you
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "argocd"
+    spec:
+      # TODO make a real project
+      project: default
+      sources:
+        - repoURL: https://github.com/voidlily/hello-nix-uv-py
+          targetRevision: stages/minikube
+          path: .
+      destination:
+        name: in-cluster
+        namespace: hello-nix-uv-py
+      syncPolicy:
+        automated:
+          enabled: true
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - ApplyOutOfSyncOnly=true
+          - ServerSideApply=true
+          - CreateNamespace=true

@@ -1,0 +1,40 @@
+# In a real setup, this would be a "hosted-apps.yaml", with a list of repos
+# passed in somehow, likely your org's microservice repos or what have you
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "argocd"
+    spec:
+      # TODO make a real project
+      project: default
+      sources:
+        - repoURL: https://github.com/voidlily/hello-nix-uv-py
+          targetRevision: HEAD
+          path: kargo/
+      destination:
+        name: in-cluster
+        # in a multicluster setup, the kargo project would live in the "CI"
+        # cluster in a namespace like hello-nix-uv-py, but since we're on a
+        # single cluster we're gonna improvise a bit
+        namespace: hello-nix-uv-py-kargo
+      syncPolicy:
+        automated:
+          enabled: true
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - ApplyOutOfSyncOnly=true
+          - ServerSideApply=true
+          - CreateNamespace=true

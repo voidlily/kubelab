@@ -31,7 +31,8 @@ spec:
         namespace: hello-nix-uv-py-kargo
       syncPolicy:
         managedNamespaceMetadata:
-          kargo.akuity.io/project: "true"
+          labels:
+            kargo.akuity.io/project: "true"
         automated:
           enabled: true
           prune: true

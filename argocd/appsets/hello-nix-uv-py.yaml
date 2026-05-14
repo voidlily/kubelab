@@ -16,6 +16,8 @@ spec:
   template:
     metadata:
       name: hello-nix-uv-py
+      annotations:
+        kargo.akuity.io/authorized-stage: "hello-nix-uv-py-kargo:minikube"
     spec:
       # TODO make a real project
       project: default

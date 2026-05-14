@@ -30,6 +30,8 @@ spec:
         # single cluster we're gonna improvise a bit
         namespace: hello-nix-uv-py-kargo
       syncPolicy:
+        managedNamespaceMetadata:
+          kargo.akuity.io/project: "true"
         automated:
           enabled: true
           prune: true

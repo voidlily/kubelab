@@ -3,5 +3,5 @@
 # in an actual public setting this would be disabled and backed by oidc instead
 api:
   adminAccount:
-    passwordHash: $2y$10$UgRwUArdZ6NzIznKTd29VOCM3vPODZ3gT150fCBpBL.zNT34yqkMC
+    passwordHash: $2y$10$vH2cFyiNI48pGeyoYQL.XOjgZfit9f3F4hrSFnRXgShaEPLmamkhO
     tokenSigningKey: hjtizjVtDxMTe9ZFtAVQcWR39CoQJrjh

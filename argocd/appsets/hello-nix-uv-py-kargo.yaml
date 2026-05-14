@@ -4,7 +4,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: argocd
+  name: hello-nix-uv-py-kargo
   namespace: argocd
 spec:
   goTemplate: true
@@ -15,7 +15,7 @@ spec:
           - name: in-cluster
   template:
     metadata:
-      name: "argocd"
+      name: hello-nix-uv-py-kargo
     spec:
       # TODO make a real project
       project: default

@@ -17,7 +17,7 @@ spec:
       project: default
       sources:
         - repoURL: oci://ghcr.io/akuity/kargo-charts/kargo
-          targetRevision: 1.10.5
+          targetRevision: 1.11.4
           path: .
           helm:
             releaseName: kargo
